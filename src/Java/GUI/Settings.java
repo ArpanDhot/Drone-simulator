@@ -1,12 +1,12 @@
 package Java.GUI;
 
+import Java.Main;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import Java.Main;
 
 public class Settings extends VBox {
 
@@ -14,7 +14,7 @@ public class Settings extends VBox {
 
     private double layout_width = 500, layout_height = 400;
 
-    public Settings(){
+    public Settings() {
         scene = new Scene(this, layout_width, layout_height);
 
         // settings vertical layout properties
@@ -23,12 +23,13 @@ public class Settings extends VBox {
         setPrefSize(layout_width, layout_height);
 
         // adding heading label
+
         this.getChildren().add(GUIControls.getLabel("Settings",
                 Pos.CENTER,
                 30,
                 Color.DARKGRAY,
                 60, 300,
-                0,0
+                0, 0
         ));
 
         HBox areaWidth_container = GUIControls.getHorizontalBox(Pos.CENTER, 30, layout_width, 60, 0, 0);
@@ -82,14 +83,18 @@ public class Settings extends VBox {
                 24,
                 50, 250,
                 0, 0,
-                e->{
+                e -> {
                     // save the settings here and get back to the menu.
+                    Main.width = Double.parseDouble(width_input.getText());
+                    Main.height = Double.parseDouble(height_input.getText());
+
+
                     Menu menu = new Menu();
                     Main.mainStage.setScene(menu.getMenuScene());
                 }));
     }
 
-    public Scene getSettingsScene(){
+    public Scene getSettingsScene() {
         return scene;
     }
 }

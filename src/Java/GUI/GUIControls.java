@@ -18,7 +18,7 @@ public class GUIControls {
     static String font_style = "Arcade Classic";
 
     //Preset method for button
-    static Button getButton(String name,int font_size, double height, double width, double y_pos, double x_pos, EventHandler<ActionEvent> eventHandler){
+    public static Button getButton(String name,int font_size, double height, double width, double y_pos, double x_pos, EventHandler<ActionEvent> eventHandler){
         Button button = new Button(name);
         button.setFont(Font.font(font_style, font_size > 22 ? FontWeight.BOLD : FontWeight.NORMAL,font_size));
         button.setPrefSize(width,height);
@@ -30,8 +30,9 @@ public class GUIControls {
         return button;
     }
 
-    static Label getLabel(String name, Pos align, int font_size, Color color, double height, double width, double yPos, double xPos){
+    public static Label getLabel(String name, Pos align, int font_size, Color color, double height, double width, double yPos, double xPos){
         Label label = new Label(name);
+        label.setAlignment(align);
         label.setFont(Font.font(font_style, font_size > 22 ? FontWeight.BOLD : FontWeight.NORMAL,font_size));
         label.setTextFill(color);
         label.setPrefSize(width, height);
@@ -41,7 +42,7 @@ public class GUIControls {
         return label;
     }
 
-    static TextField getTextField(String hint, int font_size, double width, double height, double x_pos, double y_pos){
+    public static TextField getTextField(String hint, int font_size, double width, double height, double x_pos, double y_pos){
         TextField textField = new TextField();
         textField.setPromptText(hint);
         textField.setFont(Font.font(font_style, font_size > 22 ? FontWeight.BOLD : FontWeight.NORMAL,font_size));
@@ -51,7 +52,7 @@ public class GUIControls {
         return textField;
     }
 
-    static HBox getHorizontalBox(Pos align, int spacing, double width, double height , double layout_x, double layout_y){
+    public static HBox getHorizontalBox(Pos align, int spacing, double width, double height , double layout_x, double layout_y){
         HBox box = new HBox();
         box.setAlignment(align);
         box.setSpacing(spacing);

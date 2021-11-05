@@ -1,5 +1,6 @@
 package Java.GUI;
 
+import Java.DroneArena.MainContainer;
 import Java.Main;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -11,7 +12,7 @@ public class Menu extends VBox {
     private Scene scene;
     private double layout_width = 500, layout_height = 600;
 
-    public Menu(){
+    public Menu() {
         scene = new Scene(this);
 
         // settings vertical layout properties
@@ -34,8 +35,10 @@ public class Menu extends VBox {
                 200,
                 0,
                 0,
-                e->{
+                e -> {
                     // start the game here.
+                    MainContainer container = new MainContainer();
+                    Main.mainStage.setScene(container.getSceneMainContainer());
                 }
 
         ));
@@ -47,7 +50,7 @@ public class Menu extends VBox {
                 200,
                 0,
                 0,
-                e->{
+                e -> {
                     // load the game configuration file.
                 }
         ));
@@ -59,7 +62,7 @@ public class Menu extends VBox {
                 200,
                 0,
                 0,
-                e->{
+                e -> {
                     // switch to the settings menu.
                     Settings settings = new Settings();
                     Main.mainStage.setScene(settings.getSettingsScene());
@@ -73,14 +76,14 @@ public class Menu extends VBox {
                 200,
                 0,
                 0,
-                e->{
+                e -> {
                     // load the help menu.
                     Main.mainStage.setScene(new Help().getHelpScene());
                 }
         ));
     }
 
-    public Scene getMenuScene(){
+    public Scene getMenuScene() {
         return scene;
     }
 
