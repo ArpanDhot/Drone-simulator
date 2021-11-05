@@ -1,4 +1,4 @@
-package Main.Models;
+package Java.Models;
 
 public class CleverBullet extends Position{
 
