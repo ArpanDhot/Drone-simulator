@@ -17,6 +17,7 @@ public class MainContainer extends VBox {
         this.setAlignment(Pos.TOP_CENTER);
         this.setSpacing(5);
 
+
         arena = new Arena();
         this.getChildren().add(arena);
         this.getChildren().add(new BottomMenu(arena));
