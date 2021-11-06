@@ -30,7 +30,6 @@ public class BulletUI {
 
         rect = new Rectangle();
         setupBullet();
-        setRandomDirection();
         setupTimeline();
     }
 
@@ -43,16 +42,19 @@ public class BulletUI {
 
         rect.setWidth(20);
         rect.setHeight(20);
+        rect.setLayoutX(bullet.getxPos());
+        rect.setLayoutY(bullet.getyPos());
     }
 
     void checkBoundaries(){
-        if(bullet.getxPos() < 2) bullet.changeDirection(1);
-        if(bullet.getxPos() > Main.width-rect.getWidth()) bullet.changeDirection(1);
+        if(bullet.getxPos() < 2) bullet.setMoveSpeedX(5);
+        if(bullet.getxPos() > Main.width-rect.getWidth())bullet.setMoveSpeedX(-5);
         if(bullet.getyPos() < 0){
             // destory the bullet.
             dead = true;
+            timeline.stop();
         }
-        if(bullet.getyPos() > Main.height-rect.getHeight()) bullet.changeDirection(-1);
+        if(bullet.getyPos() > Main.height-rect.getHeight()) bullet.setMoveSpeedY(-5);
     }
 
     void setupTimeline(){
@@ -62,9 +64,10 @@ public class BulletUI {
         KeyFrame frame = new KeyFrame(Duration.millis(50), e->{
             // check if the bullet is clever follow the drone
             if(isClever){
+
                 //
             }else{
-                // other wise just move to random direction;
+                // otherwise just move to random direction;
                 checkBoundaries();
                 bullet.Move();
                 rect.setLayoutX(bullet.getxPos());
@@ -74,16 +77,6 @@ public class BulletUI {
         });
 
         timeline.getKeyFrames().add(frame);
-    }
-
-    public void setRandomDirection(){
-        // new Random().nextInt(3); 0 , 1 ,2
-        int x = new Random().nextInt(3) - 1; // it return -1 , 0, 1
-        int y = new Random().nextInt(3) -1; // (0 , 1, 3) these are the possible.
-
-        if(x == 0 && y == 0) setRandomDirection();
-
-        bullet.setUpDirection(x, y);
     }
 
     public Rectangle getRect() {
