@@ -10,8 +10,7 @@ public class MainContainer extends VBox {
     public Scene sceneMainContainer;
     private Arena arena;
 
-
-    //Main container is a Vbox and it will hold the pane container as well as the VBox. The VBox will contain the toolbar that will give the controls to the user.
+    //Main container is a Vbox, and it will hold the pane container as well as the VBox. The VBox will contain the toolbar that will give the controls to the user.
     public MainContainer() {
         sceneMainContainer = new Scene(this);
         this.setAlignment(Pos.TOP_CENTER);
@@ -21,8 +20,12 @@ public class MainContainer extends VBox {
         arena = new Arena();
         this.getChildren().add(arena);
         this.getChildren().add(new BottomMenu(arena));
+
     }
 
+    public Arena getArena() {
+        return arena;
+    }
 
     public Scene getSceneMainContainer() {
         return sceneMainContainer;

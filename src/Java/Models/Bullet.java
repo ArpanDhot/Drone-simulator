@@ -1,45 +1,72 @@
-package Java.Models;
+package Java.Model;
+
+import Java.Main;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import org.json.JSONObject;
 
 public class Bullet extends Position{
 
-    private Direction direction;
-    private int moveSpeedX = 5;
-    private int moveSpeedY = 5;
+    private int dirX;
+    private int dirY;
 
-    public Bullet(double yPos, double xPos) {
-        super(yPos, xPos);
+    private DoubleProperty angle;
+
+    private final double move_speed = 2f;
+
+    public Bullet(double xPosition, double yPosition) {
+        super(xPosition, yPosition);
+
+        angle = new SimpleDoubleProperty(0);
+        dirX = xPosition > Main.width/2 ? -1 : 1;
+        dirY = 1;
     }
 
-    public Direction getDir() {
-        return direction;
+    public void update(){
+        if(checkBorderX()) dirX *= -1;
+        if(checkBorderY()) dirY *= -1;
+
+        if(dirX == -1 && dirY == -1) angle.set(-45);
+        if(dirX == 1 && dirY == 1) angle.set(140);
+        if(dirX == 1 && dirY == -1) angle.set(45);
+        if (dirX == -1 && dirY == 1) angle.set(-140);
+
+        update_position(move_speed* dirX, move_speed* dirY);
     }
 
-    public void setMoveSpeedX(int moveSpeedX) {
-        this.moveSpeedX = moveSpeedX;
-        setUpDirection(moveSpeedX-(moveSpeedX-1), moveSpeedY-(moveSpeedY-1));
+    public void setDir(int x, int y){
+        dirX = x;
+        dirY = y;
     }
 
-    public void setMoveSpeedY(int moveSpeedY) {
-        this.moveSpeedY = moveSpeedY;
-        setUpDirection(moveSpeedX-(moveSpeedX-1), moveSpeedY-(moveSpeedY-1));
+    public double getAngle() {
+        return angle.get();
     }
 
-    public void setUpDirection(double x, double y){
-        if(x == 0 && y == 1) direction = Direction.DOWN;
-        if(x == 0 && y == -1) direction = Direction.UP;
-        if(x == -1 && y == 0) direction = Direction.LEFT;
-        if(x == 1 && y == 0) direction = Direction.RIGHT;
-        if(x == 1 && y == 1) direction = Direction.DOWN_RIGHT;
-        if(x == 1 && y == -1) direction = Direction.DOWN_LEFT;
-        if(x == -1 && y == 1) direction = Direction.UP_LEFT;
-        if(x == -1 && y == 1) direction = Direction.UP_RIGHT;
+    public DoubleProperty angleProperty() {
+        return angle;
     }
 
-    public void setDir(Direction dir) {
-        this.direction = dir;
+    public boolean checkBorderY(){
+        return getPos_Y() > Main.height;
     }
 
-    public void Move(){
-        updatePosition(moveSpeedX, moveSpeedY);
+    public JSONObject getJson(){
+
+        JSONObject object = new JSONObject();
+
+        object.put("model_name", "Bullet");
+        object.put("x_pos", getPos_X());
+        object.put("y_pos", getPos_Y());
+        object.put("dir_x", dirX);
+        object.put("dir_y",dirY);
+        object.put("angle",angle.get());
+        return object;
+    }
+
+    public void unpack_json(JSONObject json){
+        setPosition(json.getDouble("x_pos"), json.getDouble("y_pos"));
+        setDir(json.getInt("dir_x"),json.getInt("dir_y"));
+        angle.set(json.getDouble("angle"));
     }
 }
