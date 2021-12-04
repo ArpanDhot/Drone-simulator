@@ -1,6 +1,6 @@
 package Java.DroneArena;
 
-import Java.Model.Drone;
+import Java.Models.Drone;
 import Java.Sprites;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ObjectProperty;

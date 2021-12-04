@@ -2,7 +2,7 @@ package Java.GUI;
 
 import Java.DroneArena.MainContainer;
 import Java.Main;
-import Java.database.DataHandling;
+import Java.Database.DataHandling;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;

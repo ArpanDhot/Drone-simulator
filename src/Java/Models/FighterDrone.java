@@ -1,4 +1,4 @@
-package Java.Model;
+package Java.Models;
 
 import Java.Sprites;
 import javafx.beans.property.DoubleProperty;
@@ -16,7 +16,7 @@ public class FighterDrone extends Position{
 
     private double width, height;
 
-    private Java.Model.Drone target;
+    private Drone target;
 
     private double move_speed = 3.8f;
 
@@ -60,29 +60,6 @@ public class FighterDrone extends Position{
         update_position(move_speed*dirX, move_speed*dirY);
     }
 
-    public double getDirX() {
-        return dirX;
-    }
-
-    public void setDirX(double dirX) {
-        this.dirX = dirX;
-    }
-
-    public double getDirY() {
-        return dirY;
-    }
-
-    public void setDirY(double dirY) {
-        this.dirY = dirY;
-    }
-
-    public double getAngle() {
-        return angle.get();
-    }
-
-    public DoubleProperty angleProperty() {
-        return angle;
-    }
 
     public void setAngle(double angle) {
         this.angle.set(angle);
@@ -96,9 +73,6 @@ public class FighterDrone extends Position{
         this.width = width;
     }
 
-    public double getHeight() {
-        return height;
-    }
 
     public void setHeight(double height) {
         this.height = height;
@@ -124,11 +98,11 @@ public class FighterDrone extends Position{
         setAngle(json.getDouble("angle"));
     }
 
-    public Java.Model.Drone getTarget() {
+    public Drone getTarget() {
         return target;
     }
 
-    public void setTarget(Java.Model.Drone target) {
+    public void setTarget(Drone target) {
         this.target = target;
     }
 

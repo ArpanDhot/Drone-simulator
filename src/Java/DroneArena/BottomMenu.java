@@ -1,8 +1,8 @@
 package Java.DroneArena;
 
 import Java.GUI.GUIControls;
-import Java.Model.FighterDrone;
-import Java.database.DataHandling;
+import Java.Models.FighterDrone;
+import Java.Database.DataHandling;
 import javafx.scene.control.ToolBar;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;

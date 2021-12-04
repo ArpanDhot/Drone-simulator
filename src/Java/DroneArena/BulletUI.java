@@ -1,6 +1,6 @@
 package Java.DroneArena;
 
-import Java.Model.Bullet;
+import Java.Models.Bullet;
 import Java.Sprites;
 import javafx.scene.Group;
 import javafx.scene.paint.ImagePattern;

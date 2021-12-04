@@ -1,9 +1,9 @@
 package Java.DroneArena;
 
 import Java.Main;
-import Java.Model.FighterDrone;
-import Java.Model.Position;
-import Java.Model.Tank;
+import Java.Models.FighterDrone;
+import Java.Models.Position;
+import Java.Models.Tank;
 import Java.Sprites;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;

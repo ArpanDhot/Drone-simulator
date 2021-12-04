@@ -1,4 +1,4 @@
-package Java.Model;
+package Java.Models;
 
 import Java.Main;
 import javafx.beans.property.DoubleProperty;
@@ -37,10 +37,6 @@ public class Bullet extends Position{
     public void setDir(int x, int y){
         dirX = x;
         dirY = y;
-    }
-
-    public double getAngle() {
-        return angle.get();
     }
 
     public DoubleProperty angleProperty() {

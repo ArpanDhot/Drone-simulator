@@ -1,4 +1,4 @@
-package Java.Model;
+package Java.Models;
 
 import Java.Main;
 import javafx.beans.property.DoubleProperty;
@@ -6,6 +6,7 @@ import javafx.beans.property.SimpleDoubleProperty;
 
 public abstract class Position {
 
+    //
     private DoubleProperty pos_X;
     private DoubleProperty pos_Y;
 
@@ -50,18 +51,10 @@ public abstract class Position {
         pos_Y.set(y);
     }
 
-    public static double distance(double x1, double y1, double x2, double y2){
-        return Math.sqrt( Math.pow(x2- x1, 2) + Math.pow(y2 - y1, 2));
-    }
     public static double distance(Position a, Position b){
         return Math.sqrt( Math.pow(b.getPos_X()- a.getPos_X(), 2) + Math.pow(b.getPos_Y() - a.getPos_Y(), 2));
     }
 
-    public static double atan2(Position a, Position b){
-        double x = a.getPos_X() - a.getPos_X();
-        double y = b.getPos_Y()- a.getPos_Y();
-        return Math.atan2(y, x);
-    }
 
     public String toString(){
         return getPos_X()+","+getPos_Y();

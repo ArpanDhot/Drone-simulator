@@ -1,4 +1,4 @@
-package Java.Model;
+package Java.Models;
 
 import Java.Main;
 import javafx.beans.property.DoubleProperty;

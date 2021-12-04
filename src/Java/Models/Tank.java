@@ -1,4 +1,4 @@
-package Java.Model;
+package Java.Models;
 
 import Java.Main;
 import Java.Sprites;
@@ -6,7 +6,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import org.json.JSONObject;
 
-public class Tank extends Java.Model.Position {
+public class Tank extends Position {
 
     private double dir;
 
@@ -30,9 +30,6 @@ public class Tank extends Java.Model.Position {
         return shape;
     }
 
-    public double getDir() {
-        return dir;
-    }
 
     public boolean checkBorderX(){
         if( getPos_X() < 0) return true;
@@ -58,10 +55,6 @@ public class Tank extends Java.Model.Position {
 
     public void setHeight(double height) {
         this.height = height;
-    }
-
-    public double getHeight() {
-        return height;
     }
 
     public Rectangle getShape() {

@@ -1,6 +1,6 @@
 package Java.DroneArena;
 
-import Java.Model.Plane;
+import Java.Models.Plane;
 import Java.Sprites;
 import javafx.scene.Group;
 import javafx.scene.image.ImageView;
