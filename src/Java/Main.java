@@ -21,18 +21,17 @@ public class Main extends Application {
         mainStage.setTitle("Drone Simulation");
         mainStage.setScene(new Menu().getMenuScene());
         mainStage.show();
+
+        Sprites.load_images();
     }
 
     public static Image loadImage(String path){
         try {
-            System.out.println();
-            Image drone = new Image(Main.class.getResource(path).toURI().getPath());
-
-            return drone;
+            return new Image(Main.class.getResource(path).toURI().toString());
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
-           return null;
+        return null;
     }
 
     public static void main (String[] args){
