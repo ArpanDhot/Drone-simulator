@@ -98,7 +98,9 @@ public class Menu extends VBox {
                 0,
                 e -> {
                     // load the help menu.
-                    Main.mainStage.setScene(new Help().getHelpScene());
+                    Help help = new Help();
+                    Main.helpPageTracker=1;
+                    Main.mainStage.setScene(help.getHelpScene());
                 }
         ));
     }

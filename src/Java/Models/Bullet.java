@@ -22,6 +22,9 @@ public class Bullet extends Position{
         dirY = 1;
     }
 
+    /**
+     *
+     */
     public void update(){
         if(checkBorderX()) dirX *= -1;
         if(checkBorderY()) dirY *= -1;

@@ -1,9 +1,12 @@
 package Java.DroneArena;
 
 import Java.GUI.GUIControls;
+import Java.GUI.Help;
+import Java.Main;
 import Java.Models.FighterDrone;
 import Java.Database.DataHandling;
 import javafx.scene.control.ToolBar;
+import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
@@ -20,10 +23,7 @@ public class BottomMenu extends ToolBar {
         this.arena = arena;
 
         //TODO start , restart, pause, add drone, charge drone
-        this.getItems().add(GUIControls.getButton("start",
-                14,
-                25, 75,
-                0, 0,
+        this.getItems().add(GUIControls.getButton("Start",14,25, 65, 0, 0,
                 e->{
                     // start the simulation.
                     arena.startSimulationControl();
@@ -31,10 +31,8 @@ public class BottomMenu extends ToolBar {
                         debugObjects.startDebug();
                 }
         ));
-        this.getItems().add(GUIControls.getButton("pause",
-                14,
-                25, 75,
-                0, 0,
+
+        this.getItems().add(GUIControls.getButton("Pause",14,25, 65, 0, 0,
                 e->{
                     // restart the simulation.
                     arena.pauseSimulation();
@@ -42,18 +40,21 @@ public class BottomMenu extends ToolBar {
                         debugObjects.pauseDebug();
                 }));
 
-        this.getItems().add(GUIControls.getButton("add drone",
-                14,
-                25, 75,
-                0,0,
+        this.getItems().add(GUIControls.getButton("AddDrone", 14, 25, 85, 0,0,
                 e->{
                     // add drone in the arena
                     arena.addDrone();
                 }));
-        this.getItems().add(GUIControls.getButton("save",
-                14,
-                25, 75,
-                0,0,e->{
+
+
+        this.getItems().add(GUIControls.getButton("Attack", 14, 25, 65,0,0,
+                e->{
+                    // attack
+                    arena.attack();
+                }));
+
+        this.getItems().add(GUIControls.getButton("Save",14,25, 65,0,0,
+                e->{
                     // charge the drone.
                     arena.pauseSimulation();
                     FileChooser chooser = new FileChooser();
@@ -77,26 +78,32 @@ public class BottomMenu extends ToolBar {
                     DataHandling.save_simulation_state(file, array);
                 }));
 
-        this.getItems().add(GUIControls.getButton("attack", 14, 25, 75,0,0,
-                e->{
-                    // attack
-                    arena.attack();
-                }));
-        this.getItems().add(GUIControls.getButton("music", 14, 25, 75,0,0,
+        this.getItems().add(GUIControls.getButton("Music", 14, 25, 65,0,0,
                 e->{
                     // attack
                     arena.play_music();
                 }));
-        this.getItems().add(GUIControls.getButton("debug", 14, 25, 75,0,0,
+
+        this.getItems().add(GUIControls.getButton("Debug", 14, 25, 65,0,0,
                 e->{
                     if(debugObjects == null){
                         debugObjects = new DebugObjects();
                         debugObjects.setArena(arena);
                         Stage stage = new Stage();
+                        stage.getIcons().add(new Image("C:/Users/Ik-Omkar/Desktop/DroneSimulator/resources/Java/logoTab/pngkit_drone-logo-png_921123.png"));
                         stage.setScene(debugObjects.getScene());
                         stage.show();
                     }
                 }));
+
+        this.getItems().add(GUIControls.getButton("Help",14,25,65,0,0,
+                e -> {
+                    // load the help menu.
+                    Help help = new Help();
+                    Main.helpPageTracker=2;
+                    Main.mainStage.setScene(help.getHelpScene());
+                }
+        ));
     }
 
 

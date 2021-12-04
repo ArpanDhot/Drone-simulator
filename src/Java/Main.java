@@ -12,10 +12,13 @@ public class Main extends Application {
     public static Stage mainStage;
     public static double width=600;
     public  static double height=400;
+    public static int helpPageTracker=0;
 
     @Override
     public void start(Stage stage) throws Exception {
         mainStage = stage;
+
+        mainStage.getIcons().add(new Image("C:/Users/Ik-Omkar/Desktop/DroneSimulator/resources/Java/logoTab/pngkit_drone-logo-png_921123.png"));
         mainStage.setResizable(false);
 
         mainStage.setTitle("Drone Simulation");
