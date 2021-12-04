@@ -27,6 +27,7 @@ public class GUIControls {
         button.setLayoutX(x_pos);
         button.setTextFill(Color.BLACK);
         button.setOnAction(eventHandler);
+        button.setWrapText(true);
         return button;
     }
 

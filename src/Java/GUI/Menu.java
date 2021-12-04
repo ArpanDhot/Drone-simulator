@@ -2,10 +2,15 @@ package Java.GUI;
 
 import Java.DroneArena.MainContainer;
 import Java.Main;
+import Java.database.DataHandling;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
+import org.json.JSONArray;
+
+import java.io.File;
 
 public class Menu extends VBox {
 
@@ -39,6 +44,8 @@ public class Menu extends VBox {
                     // start the game here.
                     MainContainer container = new MainContainer();
                     Main.mainStage.setScene(container.getSceneMainContainer());
+                    container.getArena().setup();
+                    container.getArena().setup_timeline();
                 }
 
         ));
@@ -52,6 +59,19 @@ public class Menu extends VBox {
                 0,
                 e -> {
                     // load the game configuration file.
+                    FileChooser chooser = new FileChooser();
+                    chooser.setTitle("Load Simulation State");
+                    FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("JSON FILES (*.json)", "*.json");
+                    chooser.getExtensionFilters().add(filter);
+                    File file = chooser.showOpenDialog(null);
+                    JSONArray array = DataHandling.load_simulation_state(file);
+
+                    MainContainer container = new MainContainer();
+                    Main.mainStage.setScene(container.getSceneMainContainer());
+                    if(array == null) return;
+                    container.getArena().load_data(array);
+                    container.getArena().setup_timeline();
+
                 }
         ));
 
