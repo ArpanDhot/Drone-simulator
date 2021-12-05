@@ -65,7 +65,10 @@ public class Help extends VBox {
                     if(Main.helpPageTracker == 1){
                         Main.mainStage.setScene(new Menu().getMenuScene());
                     }else if (Main.helpPageTracker == 2){
-                        Main.mainStage.setScene(new MainContainer().getSceneMainContainer());
+                        MainContainer container = new MainContainer();
+                        Main.mainStage.setScene(container.getSceneMainContainer());
+                        container.getArena().setup();
+                        container.getArena().setup_timeline();
                     }
                 }));
 
