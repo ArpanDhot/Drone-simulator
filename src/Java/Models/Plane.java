@@ -15,7 +15,9 @@ public class Plane extends Position{
         dir = 1;
     }
 
-
+    /**
+     * Updating the direction of the plan and the position of the plane.
+     */
     public void update(){
         if(checkBorderX()) dir *= -1;
         update_position(move_speed*dir, 0);
@@ -25,6 +27,9 @@ public class Plane extends Position{
         return dir;
     }
 
+    /**
+     * Not using the method from the position class because it doesn't have the with of the object.
+     */
     public boolean checkBorderX(){
         if( getPos_X() < 0) return true;
         return getPos_X() > Main.width-width;
@@ -38,6 +43,9 @@ public class Plane extends Position{
         this.width = width;
     }
 
+    /**
+     *  Creating a Json object of this model data.
+     */
     public JSONObject getJson(){
         JSONObject object = new JSONObject();
         object.put("model_name", "Plane");
@@ -48,6 +56,9 @@ public class Plane extends Position{
         return object;
     }
 
+    /**
+     *  Loading the Json object.
+     */
     public void unpack_json(JSONObject json){
         setPosition(json.getDouble("pos_x"), json.getDouble("pos_y"));
         setWidth(json.getDouble("width"));

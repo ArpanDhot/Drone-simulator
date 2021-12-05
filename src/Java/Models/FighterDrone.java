@@ -33,6 +33,7 @@ public class FighterDrone extends Position{
         shape = new Rectangle();
         shape.setWidth(width);
         shape.setHeight(height);
+        //Binding the x and y of the shape to the fighter drone position.
         shape.layoutXProperty().bind(pos_XProperty());
         shape.layoutYProperty().bind(pos_YProperty());
         shape.setFill(new ImagePattern(Sprites.fighter_drone));
@@ -41,22 +42,23 @@ public class FighterDrone extends Position{
     }
 
     public void update(){
+        //Checking if it has got the target.
         if(target == null) return;
+        //Checking if the target is dead.
         if(target.isDead()) {
             target = null;
             return;
         }
+        //formula is to rotate and face the target while it is moving.
         double a = Math.atan2(target.getPos_Y(), target.getPos_X())*(360/Math.PI) - 180f;
         angle.set(a);
-        dirX = 0;
-        dirY = 0;
+        //Getting the difference, then checking with the condition where the target if and moving according to it.
         double x = target.getPos_X()-getPos_X();
         double y = target.getPos_Y()-getPos_Y();
         if(x > 10) dirX = 1;
         if(x < -10) dirX = -1;
         if(y > 10) dirY = 1;
         if(y < -10) dirY = -1;
-
         update_position(move_speed*dirX, move_speed*dirY);
     }
 

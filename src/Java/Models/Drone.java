@@ -36,6 +36,7 @@ public class Drone extends Position {
         downLeftY = new SimpleDoubleProperty();
         downRightY = new SimpleDoubleProperty();
 
+        //Setting up the position of the sensors
         topLeftX.set(getPos_X()-12);
         topLeftY.set(getPos_Y()-22);
         topRightX.set(getPos_X()+52);
@@ -78,11 +79,6 @@ public class Drone extends Position {
         return downRightX;
     }
 
-    public void changeDir(int x, int y){
-        dirX *= x;
-        dirY *= y;
-    }
-
     public int getDirX() {
         return dirX;
     }
@@ -91,6 +87,9 @@ public class Drone extends Position {
         return dirY;
     }
 
+    /**
+     * Used when loading the file.
+     */
     public void setDir(int x, int y){
         dirX = x;
         dirY = y;
@@ -113,6 +112,9 @@ public class Drone extends Position {
         downRightY.set(getPos_Y()+18);
     }
 
+    /**
+     * Checking the boundaries
+     */
     public void checkBorders(){
         if(getPos_Y() < 0) dirY = 1;
         if(getPos_Y() > Main.height-height) dirY = -1;

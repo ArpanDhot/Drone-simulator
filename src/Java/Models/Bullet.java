@@ -18,17 +18,19 @@ public class Bullet extends Position{
         super(xPosition, yPosition);
 
         angle = new SimpleDoubleProperty(0);
+
+        //Dictates the direction that to bullet gets shoot from the plane.
         dirX = xPosition > Main.width/2 ? -1 : 1;
         dirY = 1;
     }
 
-    /**
-     *
-     */
+
     public void update(){
+        //Checking the boundaries.
         if(checkBorderX()) dirX *= -1;
         if(checkBorderY()) dirY *= -1;
 
+        //Methods to rotate the bullet according to the direction.
         if(dirX == -1 && dirY == -1) angle.set(-45);
         if(dirX == 1 && dirY == 1) angle.set(140);
         if(dirX == 1 && dirY == -1) angle.set(45);
@@ -37,6 +39,9 @@ public class Bullet extends Position{
         update_position(move_speed* dirX, move_speed* dirY);
     }
 
+    /**
+     * Used when loading the file.
+     */
     public void setDir(int x, int y){
         dirX = x;
         dirY = y;
@@ -46,10 +51,16 @@ public class Bullet extends Position{
         return angle;
     }
 
+    /**
+     *Checking the Y axis.
+     */
     public boolean checkBorderY(){
         return getPos_Y() > Main.height;
     }
 
+    /**
+     *
+     */
     public JSONObject getJson(){
 
         JSONObject object = new JSONObject();
@@ -63,6 +74,9 @@ public class Bullet extends Position{
         return object;
     }
 
+    /**
+     *
+     */
     public void unpack_json(JSONObject json){
         setPosition(json.getDouble("x_pos"), json.getDouble("y_pos"));
         setDir(json.getInt("dir_x"),json.getInt("dir_y"));

@@ -40,6 +40,7 @@ public class DroneUI {
         sensor_stroke.set(stroke);
     }
 
+    //
     Rectangle getShape(Paint body, ObjectProperty<Paint> stroke, double width, double height, DoubleProperty x, DoubleProperty y, double angle){
         Rectangle rectangle = new Rectangle();
         rectangle.setFill(body);
