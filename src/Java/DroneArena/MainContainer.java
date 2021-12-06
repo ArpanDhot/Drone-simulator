@@ -21,6 +21,8 @@ public class MainContainer extends VBox {
         this.getChildren().add(arena);
         this.getChildren().add(new BottomMenu(arena));
 
+        //make menu
+
     }
 
     public Arena getArena() {

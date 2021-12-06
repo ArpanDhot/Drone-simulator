@@ -58,6 +58,11 @@ public class Arena extends Pane {
             e.printStackTrace();
         }
     }
+
+
+
+
+
     public void load_data(JSONArray array){
         for (Object o : array) {
             JSONObject object = (JSONObject) o;
@@ -100,10 +105,13 @@ public class Arena extends Pane {
     }
 
     void background(){
+        //Changed the colour of Pane.
         this.setStyle("""
                 -fx-background-color: #8ae0ff;
                 """);
 
+        //Adding the ten clouds in here.
+        //Assigning random x from 0 to width and y from 0 to 40.
         for(int i = 0; i < 10; i++){
             double x = new Random().nextDouble(Main.width);
             double y = new Random().nextDouble(40);
@@ -112,10 +120,13 @@ public class Arena extends Pane {
             imgView.setLayoutY(y);
             this.getChildren().add(imgView);
         }
+
+        //To calculate the amount of sprites can be loaded in the given width.
         int tile_width = 100;
         int d = (int) (Main.width/tile_width);
         int y = (int) (Main.height-10);
 
+        //Placing the images
         for(int i = 0; i<d; i++){
             ImageView img = new ImageView(Sprites.grass[i%2]);
             img.setLayoutX(i*tile_width);
@@ -123,7 +134,7 @@ public class Arena extends Pane {
             this.getChildren().add(img);
         }
 
-        // drone emerge point.
+        // Pipe
         ImageView imgView = new ImageView(Sprites.pipe);
         imgView.setFitHeight(80);
         imgView.setFitWidth(60);
@@ -133,6 +144,9 @@ public class Arena extends Pane {
 
     }
 
+    /**
+     * Setting up the plane and the tank.
+     */
     public void setup(){
         plane = new PlaneUI(Main.width/2, 20);
         this.getChildren().add(plane);
@@ -144,20 +158,31 @@ public class Arena extends Pane {
         this.getChildren().add(tank.makeShape());
     }
 
+
+    /**
+     * Method updates all the objects
+     */
     public void setup_timeline(){
+        //Setting up the timeline
         timeline.setCycleCount(Animation.INDEFINITE);
         KeyFrame frame = new KeyFrame(Duration.millis(50), e->{
+            //Updating the plane and tank
             plane.update();
             tank.update();
 
+
+            //FighterDrone
             for (FighterDrone fighter_drone : fighter_drones) {
+                //If we have any fighter drone in the linked list then it will update it.
                 fighter_drone.update();
                 if(fighter_drone.getTarget() == null){
                     if(!drones.isEmpty()){
+                        //It also checks if fighter drone has got the target if not it assigns a new target.
                         fighter_drone.setTarget(drones.get(new Random().nextInt(drones.size())).getDrone());
                     }
                 }
             }
+
 
             drones.forEach(drone ->{
                 drone.getDrone().update();

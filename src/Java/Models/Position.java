@@ -21,7 +21,6 @@ public abstract class Position {
         pos_Y = new SimpleDoubleProperty(yPosition);
     }
 
-
     /**
      * Getting the value stored in pos_x using the "get()" method.
      */

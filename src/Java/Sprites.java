@@ -18,6 +18,10 @@ public class Sprites {
     public static Image fighter_drone;
     public static Image tank;
 
+    /**
+     * We are assigning the name of the images to the variable of type Image.
+     */
+
     public static void load_images(){
         drone = Main.loadImage("Drone.png");
         pipe = Main.loadImage("Pipe.png");
@@ -28,10 +32,11 @@ public class Sprites {
         fighter_drone = Main.loadImage("fighter_drone.png");
         tank = Main.loadImage("tank.png");
 
+
         int index = 0;
         for(int row = 1; row<=6; row++){
             for(int col = 1; col<=8; col++){
-                explosions[index++] = Main.loadImage("explosions/row-"+row+"-column-"+col+".png");
+                explosions[index++] = Main.loadImage("explosions/row-"+row+"-column-"+col+".png"); // The path of it starts from the directory and then the names.  "explosions" == folder
             }
         }
 

@@ -16,6 +16,7 @@ public class PlaneUI extends Group {
         this.layoutXProperty().bind(plane.pos_XProperty());
         this.layoutYProperty().bind(plane.pos_YProperty());
 
+        //Load the image according to its direction.
         imgView = new ImageView(plane.getDir() == -1 ? Sprites.left_plane : Sprites.right_plane);
         imgView.setFitWidth(120);
         imgView.setFitHeight(60);

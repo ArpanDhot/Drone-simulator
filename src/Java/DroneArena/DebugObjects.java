@@ -9,10 +9,10 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.util.Duration;
 
-public class DebugObjects extends TextFlow {
+public class DebugObjects extends TextFlow { //TextFlow is a container.
 
     private Arena arena;
-    private Text text;
+    private Text text;  //Text like a label.
     private Timeline timeline;
 
     public DebugObjects(){
@@ -22,8 +22,8 @@ public class DebugObjects extends TextFlow {
 
         timeline = new Timeline();
 
-        KeyFrame frame = new KeyFrame(Duration.millis(50), e->{
-            text.setText(debug_data());
+        KeyFrame frame = new KeyFrame(Duration.millis(300), e->{
+            text.setText(debug_data()); //Calling the debug_data method
         });
 
         timeline.setCycleCount(Animation.INDEFINITE);
@@ -47,9 +47,11 @@ public class DebugObjects extends TextFlow {
         this.arena = arena;
     }
 
+
     public String debug_data(){
         StringBuilder data = new StringBuilder("Debugging Models Data.\n");
 
+        //This is used to adding strings together
         data.append("Plane (").append(arena.getPlane().getPlane().toString()).append(")\t\t\t");
         data.append("Tank (").append(arena.tank.toString()).append(")\n");
         int index = 0;

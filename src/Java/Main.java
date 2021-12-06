@@ -28,6 +28,10 @@ public class Main extends Application {
         Sprites.load_images();
     }
 
+    /**
+     * Method loads the images from the base directory
+     * "C:/Users/Ik-Omkar/Desktop/DroneSimulator/resources/Java"
+     */
     public static Image loadImage(String path){
         try {
             return new Image(Main.class.getResource(path).toURI().toString());
