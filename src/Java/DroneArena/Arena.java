@@ -183,36 +183,46 @@ public class Arena extends Pane {
                 }
             }
 
-
+/**
+ *
+ */
             drones.forEach(drone ->{
                 drone.getDrone().update();
 
+                //Checking if the drone collides with the plane
                 if(drone.getBase().getBoundsInParent().intersects(plane.getBoundsInParent())) {
                     drone.getDrone().setDir(1, 1);
+                    //when it collides then explode
                     if (Position.distance(drone.getDrone(), plane.getPlane()) < 15) {
                         drone.getDrone().setDead(true);
-                        //TODO Explosion.
                         explode(drone.getDrone().getPos_X(), drone.getDrone().getPos_Y());
                     }
                 }
+
+                //Checking if the drone collides with the tank
                 if(drone.getBase().getBoundsInParent().intersects(tank.getShape().getBoundsInParent())) {
                     drone.getDrone().setDir(-1, -1);
+                    //when it collides then explode
                     if (Position.distance(drone.getDrone(), plane.getPlane()) < 15) {
                         drone.getDrone().setDead(true);
-                        //TODO Explosion.
+
                         explode(drone.getDrone().getPos_X(), drone.getDrone().getPos_Y());
                     }
                 }
+
+                //Drone collision detection to other drones
                 for (DroneUI d : drones) {
                     if(d == drone) continue;
-
+                    //When the distance is less than 30 move the opposite direction
                     if(Position.distance(drone.getDrone(), d.getDrone()) < 30){
                         drone.getDrone().setDir(d.getDrone().getDirX()*-1, d.getDrone().getDirY()*-1);
                     }
                 }
+
+                //Bullet collision and hit drone explode
                 for (BulletUI bullet : bullets) {
                     // TOP LEFT COLLISION
-                    if(drone.getTop_left().getBoundsInParent().intersects(bullet.getBoundsInParent())) {
+                    if(drone.getTop_left().getBoundsInParent().intersects(bullet.getBoundsInParent())) { //Using the sensor to detect the collision
                         drone.setFillSensors(Color.RED);
                         drone.getDrone().setDir(1, 1);
                     }
@@ -232,21 +242,22 @@ public class Arena extends Pane {
                         drone.getDrone().setDir(-1, -1);
                     }
 
-                    // BASE COLLISION
+                    //When the distance is less than 20 drone explode
                     if(Position.distance(drone.getDrone(),bullet.getBullet()) < 20) {
                         drone.getDrone().setDead(true);
-                        //TODO Explosion.
                         explode(drone.getDrone().getPos_X(), drone.getDrone().getPos_Y());
                         this.getChildren().remove(bullet);
                         bullet.getBullet().setDir(0,-1);
                         bullet.getBullet().setPosition(0,-50);
                     }
                 }
+
+                //Fighter Drone collision and explosion
                 for (FighterDrone fighter_drone : fighter_drones) {
+                    //When the distance is less than 20 drone explode
                     if(Position.distance(fighter_drone, drone.getDrone()) < 20 ){
                         drone.getDrone().setDead(true);
                         fighter_drone.setDead(true);
-
                         explode(drone.getDrone().getPos_X(), drone.getDrone().getPos_Y());
                         explode(fighter_drone.getPos_X(), fighter_drone.getPos_Y());
 
@@ -254,12 +265,15 @@ public class Arena extends Pane {
                 }
             });
 
+            //Updating the bullet
             for (BulletUI bullet : bullets) {
                 bullet.getBullet().update();
             }
 
+            //Method in explosion class
             explosions.forEach(Explosion::countDown);
 
+            //To remove the explosion if the countdown is less than 0
             explosions.removeIf(explosion -> {
                 if(explosion.countDown() < 0) {
                     this.getChildren().remove(explosion);
@@ -268,6 +282,7 @@ public class Arena extends Pane {
                 return false;
             });
 
+            //To remove the bullet if the Y axis is less than -30
             bullets.removeIf(b -> {
                 if(b.getBullet().getPos_Y() < -30){
                     this.getChildren().remove(b);
@@ -276,6 +291,7 @@ public class Arena extends Pane {
                 return false;
             });
 
+            //To remove the drone when is dead
             drones.removeIf(drone ->{
                 if(drone.getDrone().isDead()){
                     this.getChildren().remove(drone.getBase());
@@ -288,6 +304,7 @@ public class Arena extends Pane {
                 return false;
             });
 
+            //To remove the fighter drone when is dead
             fighter_drones.removeIf(d->{
                 if(d.isDead()){
                     this.getChildren().remove(d.getShape());
@@ -296,6 +313,7 @@ public class Arena extends Pane {
                 return false;
             });
 
+            //Fire delay of the plane shooting
             if(delay < 0){
                 fire();
                 delay = fireDelay;
@@ -306,6 +324,9 @@ public class Arena extends Pane {
         timeline.getKeyFrames().add(frame);
     }
 
+    /**
+     * Explosion
+     */
     private void explode(double x, double y) {
         Explosion explosion = new Explosion(x, y);
         explosions.add(explosion);
@@ -313,20 +334,26 @@ public class Arena extends Pane {
         explosion_sound.play();
     }
 
+    /**
+     * Shoot bullet
+     */
     public void fire(){
         BulletUI bullet = new BulletUI(plane.getLayoutX(), plane.getLayoutY()+25);
         bullets.add(bullet);
         this.getChildren().add(bullet);
     }
 
+    //Used in the debug to pint the axis
     public PlaneUI getPlane() {
         return plane;
     }
 
+    //play the simulation
     public void startSimulationControl(){
         timeline.play();
     }
 
+    //play the music
     public void play_music(){
         if(background_music.isPlaying())
             background_music.stop();
@@ -334,10 +361,12 @@ public class Arena extends Pane {
             background_music.play();
     }
 
+    //pause the simulation
     public void pauseSimulation(){
         timeline.pause();
     }
 
+    //Method to add the drone
     public void addDrone(){
         DroneUI drone = new DroneUI(Main.width/1.5, Main.height-55);
         this.getChildren().add(drone.getBase());
@@ -348,10 +377,12 @@ public class Arena extends Pane {
         drones.add(drone);
     }
 
+    //Used in the debug to pint the axis
     public Tank getTank() {
         return tank;
     }
 
+    //Method used to give random first target
     public void attack(){
         FighterDrone fighterDrone = new FighterDrone(tank.getPos_X()+tank.getWidth()/2, tank.getPos_Y()-10);
         fighterDrone.setWidth(25);
