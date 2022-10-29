@@ -20,7 +20,6 @@ The majority of the classes in this project incorporate encapsulation. This conc
 ## Application Demo
 ![about](/Demo/cc3044ee9322070418fc.gif)
 
-[Handlebars templates](http://handlebarsjs.com/)
 
 ### Instruction to play the simulation
 - To play the simulation, download the "DroneSimulator-Jar.zip" file, and you must have the [JavaFx library](https://gluonhq.com/products/javafx/) downloaded on your pc. 
