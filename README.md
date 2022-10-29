@@ -17,5 +17,5 @@ This application is designed to teach 12 different mathematical terms using prob
 
 
 ## Application Demo
-![about](/Demo/1 (1).gif)
+![about](/Demo/cc3044ee9322070418fc.gif)
 
