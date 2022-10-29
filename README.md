@@ -6,7 +6,7 @@ The inspiration for the theme came from Commando 2, a fighting game. This theme,
 ### Object Oriented Programming implantation overview
 The simulation game comprises many objects with one thing in common their movement. Therefore, I created an abstract Position class containing coordinates and appropriate methods. The choice of making the class abstract was for a reason, to not allow the user to create instances of the Position class but only inherit it and provide the unimplemented methods. 
 
-The majority of the classes in this project incorporate encapsulation. This concept enabled hiding an object's internal representation, or state, from the outside. For example, the attributes in the Drone class are private; therefore, they are only accessible within the class. The only way to access them is by using the public's getter and setter methods. Furthermore, it enhances security because the programmer cannot manipulate attributes from every class. 
+The majority of the classes in this project incorporate encapsulation. This concept enabled hiding an object's internal representation, or state, from the outside. For example, the attributes in the Drone class are private; therefore, they are only accessible within the class. The only way to access them is by using the public getter and setter methods. Furthermore, it enhances security because the programmer cannot manipulate attributes from every class. 
 
 ### Features
 - The user can add an ordinary drone to the simulation
