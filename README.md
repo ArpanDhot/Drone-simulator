@@ -1,8 +1,12 @@
 ## Drone simulator Java
-This drone simulator game has been made using Java and JavaFX. The simulator is a 2d game that follows the theme of fighting games. The game has good drones with sensors to dodge obstacles, and the enemies are the plane shooting bullets and tanks that release the enemy drones. 
+This drone simulator game has been made using Java and JavaFX.The application employs concepts of Object Oriented Programming to create blueprints for several objects in the game.
 
-## Simulation Theme
 The inspiration for the theme came from Commando 2, a fighting game. This theme, in its narrative, powerfully uses binary opposition theory (Levi Strauss) that helps to thicken the plot and further the narrative; and introduce contrast. The game includes the lead drone and its enemies in the form of a plane shooting bullets and the tank launching enemy drones. The theme is further enforced by connotating the enemy with strong war imagery and the good drone with light colour. Furthermore, the object's actions demote their identity, such as the enemies inherited evil actions such as hitting and chasing. In contrast, the good enemy tries to dodge the obstacles incoming in its path. The scene colour scheme is bright colours from the sky and clouds to the pipe. To reinforce the good drone belonging there, they are spawned from a stationary object that, in this instance, is a pipe. On the other side, the enemies are spawned from moving objects such as the tank and the enemy drone. The scene should subconsciously create a sense of good getting invaded by bad.
+
+### Object Oriented Programming implantation overview
+The simulation game comprises many objects with one thing in common their movement. Therefore, I created an abstract Position class containing coordinates and appropriate methods. The choice of making the class abstract was for a reason, to not allow the user to create instances of the Position class but only inherit it and provide the unimplemented methods. 
+
+The majority of the classes in this project incorporate encapsulation. This concept enabled hiding an object's internal representation, or state, from the outside. For example, the attributes in the Drone class are private; therefore, they are only accessible within the class. The only way to access them is by using the public's getter and setter methods. Furthermore, it enhances security because the programmer cannot manipulate attributes from every class. 
 
 ### Features
 - The user can add an ordinary drone to the simulation
